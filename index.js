@@ -27,6 +27,7 @@ function getPlayers(query) {
     .then(function(responseJson){
         loopPlayers(responseJson);
         playerInfoClick(responseJson);
+        moreStatsButton(responseJson)
     })
     .catch(err => {
       $('#js-error-message').text(`Something went wrong: ${err.message}`);
@@ -52,7 +53,7 @@ function loopPlayers(responseJson){
                 <p>Weight: ${responseJson.data[i].weight_pounds}</p>
                 <p>Team: ${responseJson.data[i].team.full_name}</p>
                 <div class="more-info">
-                    <button class="player-info">More Stats</button>           
+                    <button class="player-info" onclick="openNav()">More Stats</button>           
                 </div>
             </div>
             
@@ -69,8 +70,35 @@ function playerInfoClick(responseJson){
         });
 };
 
+function moreStatsButton(responseJson){
+    $('body').on('click', '.player-info', function(event){
+        console.log('clickworking')
+        $('body').append(`
+        <div id="myNav" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+            <p>ingo</p>
+            <p>ingo</p>
+            <p>ingo</p>
+            <p>ingo</p>
+        </div>
+
+        </div>
+        `)
+    })    
+}
+function openNav() {
+    document.getElementById("myNav").style.width = "100%";
+  }
+  
+  /* Close when someone clicks on the "x" symbol inside the overlay */
+function closeNav() {
+    document.getElementById("myNav").style.width = "0%";
+}
+
 function nbaFunctions(){
     watchForm();
     playerInfoClick();
+    moreStatsButton();
 }
 $(nbaFunctions);
