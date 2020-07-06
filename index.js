@@ -1,6 +1,5 @@
- 
+
 const searchURL = 'https://www.balldontlie.io/api/v1/players';
-var playersIds;
 //FUNCTIONS TO OBTAIN PLAYERS//
 function formatQueryParams(params) {
   const queryItems = Object.keys(params)
@@ -26,7 +25,8 @@ function getPlayers(query) {
       throw new Error(response.statusText);
     })
     .then(function(responseJson){
-        playersIds = responseJson
+        loopPlayers(responseJson);
+        playerInfoClick(responseJson);
     })
     .catch(err => {
       $('#js-error-message').text(`Something went wrong: ${err.message}`);
@@ -38,18 +38,34 @@ function watchForm() {
     event.preventDefault();
     const searchTerm = $('#js-search-term').val();
     getPlayers(searchTerm);
-    loopPlayers(playersIds);
   });
 }
 //FUNCTIONS TO DISPLAY PLAYERS AND STATS//
-function loopPlayers(playersIds){
-    for (let i = 0; i < playersIds.data.length; i++){
+function loopPlayers(responseJson){
+    $('#results-list').empty();
+    for (let i = 0; i < responseJson.data.length; i++){
         $('#results-list').append(
-            `<li><h3 id="payerName">${playersIds.data[i].first_name} ${playersIds.data[i].last_name}</h3>
+            `<li><button class="dropdown" id="payerName">${responseJson.data[i].first_name} ${responseJson.data[i].last_name}</button>
+            <div class="panel">
+            <p>Position: ${responseJson.data[i].position}</p>
+            <p>Height: ${responseJson.data[i].height_feet},${responseJson.data[i].height_inches}</p>
+            <p>Weight: ${responseJson.data[i].weight_pounds}</p>
+            <p>Team: ${responseJson.data[i].team.full_name}</p>
+            </div>
           `)
-    }
+
+        }
     $('#results').removeClass('hide');
   };
- 
 
-$(watchForm);
+function playerInfoClick(){
+        $('.dropdown').click(function(event){
+            $('.panel').slideToggle('active');
+        });
+};
+
+function nbaFunctions(){
+    watchForm();
+    playerInfoClick();
+}
+$(nbaFunctions);
