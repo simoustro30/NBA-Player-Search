@@ -45,21 +45,26 @@ function loopPlayers(responseJson){
     $('#results-list').empty();
     for (let i = 0; i < responseJson.data.length; i++){
         $('#results-list').append(
-            `<li><button class="dropdown" id="payerName">${responseJson.data[i].first_name} ${responseJson.data[i].last_name}</button>
+            `<li><button class="dropdown id${responseJson.data[i].id}" id="payerName">${responseJson.data[i].first_name} ${responseJson.data[i].last_name}</button>
             <div class="panel">
-            <p>Position: ${responseJson.data[i].position}</p>
-            <p>Height: ${responseJson.data[i].height_feet},${responseJson.data[i].height_inches}</p>
-            <p>Weight: ${responseJson.data[i].weight_pounds}</p>
-            <p>Team: ${responseJson.data[i].team.full_name}</p>
+                <p>Position: ${responseJson.data[i].position}</p>
+                <p>Height: ${responseJson.data[i].height_feet},${responseJson.data[i].height_inches}</p>
+                <p>Weight: ${responseJson.data[i].weight_pounds}</p>
+                <p>Team: ${responseJson.data[i].team.full_name}</p>
+                <div class="more-info">
+                    <button class="player-info">More Stats</button>           
+                </div>
             </div>
+            
           `)
 
         }
     $('#results').removeClass('hide');
   };
 
-function playerInfoClick(){
-        $('.dropdown').click(function(event){
+function playerInfoClick(responseJson){
+    for (let i = 0; i < responseJson.data.length; i++)
+        $(`.id${responseJson.data[i].id}`).click(function(event){
             $('.panel').slideToggle('active');
         });
 };
