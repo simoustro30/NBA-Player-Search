@@ -88,7 +88,7 @@ function displayMoreStats(responseJson){
           <p>3PT: ${responseJson.data[i].fg3m} - ${responseJson.data[i].fg3a}</p>
           <p>3P%: ${responseJson.data[i].fg3_pct*100}</p>
           <p>FT: ${responseJson.data[i].ftm} - ${responseJson.data[i].fta}</p>
-          <p>FT%: ${responseJson.data[i].ft_pct*100}</p>
+          <p>FT%: ${Math.trunc(responseJson.data[i].ft_pct*100)}</p>
           <p>OR: ${responseJson.data[i].oreb}</p>
           <p>DR: ${responseJson.data[i].dreb}</p>
           <p>REB: ${responseJson.data[i].reb}</p>
