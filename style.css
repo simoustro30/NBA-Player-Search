@@ -11,17 +11,19 @@
   text-align: left;
   border: none;
   outline: none;
+  position: relative;
 }
 li{
   list-style-type: none;
 }
 .active, .dropdown:hover{
-  background-color: #ccc;
+  background-color: #003256  ;
 }
 .panel{
   padding: 0 18px;
   display: none;
   background-color: white;
+  position: relative;
 }
 .panel p{
   padding: 8px;
@@ -84,43 +86,40 @@ li{
   flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  align-items: baseline;
 }
 
 /*FOR DESKTOP*/
 @media all and (min-width: 700px){
   .header-box{
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
   }
   .container{
     right: 25%;
   }
   .search-flex-box{
   padding-left: 20px;
-  padding-top: 2.2%;
   }
   .dropdown{
     width: 50%;
     padding: 15px;
     text-align: left;
-    position: relative;
     left: 25%;
     right: 25%;
   }
   .panel{
-    position: relative;
     left: 25%;
     right: 25%;
-    width: 46.6%;
+    width: 47.55%;
+  }
+  .response-title{
+    position: relative;
+    left: 45%;
   }
 }
 
 /*BACKGROUND*/
 body{
-  background: url(./images/background-image.jpg) no-repeat center fixed;
-  background-size: cover;
+background-color: #F2F7FB ;
 }
 

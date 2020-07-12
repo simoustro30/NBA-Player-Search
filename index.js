@@ -125,7 +125,6 @@ function secondFetch(playersId){
 function closeNav() {
     $("#myNav").on( 'click', '.closebtn', function(event){
       $( "#myNav" ).removeClass( 'displayOverlay' );
-      console.log('close click working')
     });
 }
 function nbaFunctions(){
