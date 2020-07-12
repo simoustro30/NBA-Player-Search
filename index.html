@@ -10,13 +10,21 @@
 </head>
 <body>
     <div class="container">
-        <h1>Find Your Favorite NBA Player</h1>
-        <form id="js-form">
-            <label for="search-term">Search term</label>
-            <input type="text" name="search-term" id="js-search-term" required>
-            <input type="submit" value="Search">
-        </form>
-        <p id="js-error-message" class="error-message"></p>
+        <div class="header-box">
+            <div class="flex-box">
+            <h1>Find Your Favorite NBA Player</h1>
+            </div>
+            <div class="search-flex-box">
+            <form id="js-form">
+                <label for="search-term">Look up any Player</label>
+                <input type="text" name="search-term" id="js-search-term" required>
+                <input type="submit" value="Search">
+            </form>
+            </div>
+            <div class="error-flex-box">
+            <p id="js-error-message" class="error-message"></p>
+            </div>
+        </div>
         <section id="results" class="hide">
           <h2>Search results</h2>
           <ul id="results-list">
