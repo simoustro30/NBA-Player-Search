@@ -7,10 +7,13 @@
   color: #444;
   cursor: pointer;
   width: 100%;
-  padding: 18px;
+  padding: 15px;
   text-align: left;
   border: none;
   outline: none;
+}
+li{
+  list-style-type: none;
 }
 .active, .dropdown:hover{
   background-color: #ccc;
@@ -20,6 +23,14 @@
   display: none;
   background-color: white;
 }
+.panel p{
+  padding: 8px;
+  margin: 0;
+}
+.more-info{
+  padding: 8px;
+}
+/*OVERLAY*/
 .overlay {  
   height: 100%;
   width: 0;
@@ -56,23 +67,7 @@
     right: 35px;
   }
 }
-/*Header position*/
-.header-box{
-  display: flex;
-  flex-direction: column;
-  align-content: space-between;
-}
-@media all and (min-width: 700px){
-  .header-box{
-    flex-direction: row;
-    align-content: space-between;
-  }
-  .search-flex-box{
-  padding-left: 20px;
-  padding-top: 2.2%;
-  }
-}
-
+/*NAVIGATION SLIDE*/
 #mynav{
   width: 0%;
 }
@@ -81,5 +76,51 @@
 }
 #myNav{
   color: #ccc;
+}
+
+/*Header position*/
+.header-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+/*FOR DESKTOP*/
+@media all and (min-width: 700px){
+  .header-box{
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .container{
+    right: 25%;
+  }
+  .search-flex-box{
+  padding-left: 20px;
+  padding-top: 2.2%;
+  }
+  .dropdown{
+    width: 50%;
+    padding: 15px;
+    text-align: left;
+    position: relative;
+    left: 25%;
+    right: 25%;
+  }
+  .panel{
+    position: relative;
+    left: 25%;
+    right: 25%;
+    width: 46.6%;
+  }
+}
+
+/*BACKGROUND*/
+body{
+  background: url(./images/background-image.jpg) no-repeat center fixed;
+  background-size: cover;
 }
 

@@ -25,6 +25,8 @@ function getPlayers(query) {
         loopPlayers(responseJson);
     })
     .catch(err => {
+      $('#results').removeClass('hide')
+      $('.response-title').text('No results :(')
       $('#js-error-message').text(`Something went wrong: ${err.message}`);
     });
 }
@@ -61,14 +63,9 @@ function playerInfoClick(){
 };
 function moreStatsButton(){
     $('#results-list').on('click', '.player-info', function(event){
-      console.log( $(this).attr( 'id' ) );
        const playersId = $(this).attr('id');
        secondFetch(playersId);
       $('#myNav').addClass( 'displayOverlay' );
-      console.log('clickworking')
-      // Retrieve the id from the button attribute 'id'
-      // Trigger another fetch sending the id
-      // Display the results in the #myNav
         $('#myNav').html(`
             <a href="javascript:void(0)" class="closebtn">&times;</a>
             `);
@@ -80,7 +77,7 @@ function displayMoreStats(responseJson){
   for (let i = 0; i < responseJson.data.length; i++){
     $('#myNav').append(`
         <div class="overlay-content">
-        <h3>Season Averages: ${responseJson.data[i].season}</h3>
+        <h3 class="title-more-info" >Season Averages: ${responseJson.data[i].season}</h3>
           <p>GP: ${responseJson.data[i].games_played}</p>
           <p>Min: ${responseJson.data[i].min}</p>
           <p>FG: ${responseJson.data[i].fgm} - ${responseJson.data[i].fga}</p>
@@ -118,10 +115,9 @@ function secondFetch(playersId){
   })
   .then(function(responseJson){
       displayMoreStats(responseJson);
-      console.log(responseJson);
   })
   .catch(err => {
-    $('#js-error-message').text(`Something went wrong: ${err.message}`);
+    $('#myNav').append(`<p>Something went wrong: ${err.message}</p>`);
   });
 };
 
