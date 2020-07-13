@@ -49,7 +49,7 @@ function loopPlayers(responseJson){
                 <p>Weight: ${responseJson.data[i].weight_pounds}</p>
                 <p>Team: ${responseJson.data[i].team.full_name}</p>
                 <div class="more-info">
-                    <button class="player-info" id= "${responseJson.data[i].id}">More Stats</button>           
+                    <button class="player-info" id= "${responseJson.data[i].id}">Stats</button>           
                 </div>
             </div>
           `)
@@ -78,23 +78,25 @@ function displayMoreStats(responseJson){
     $('#myNav').append(`
         <div class="overlay-content">
         <h3 class="title-more-info" >Season Averages: ${responseJson.data[i].season}</h3>
-          <p>GP: ${responseJson.data[i].games_played}</p>
-          <p>Min: ${responseJson.data[i].min}</p>
-          <p>FG: ${responseJson.data[i].fgm} - ${responseJson.data[i].fga}</p>
-          <p>FG%: ${responseJson.data[i].fg_pct*100}</p>
-          <p>3PT: ${responseJson.data[i].fg3m} - ${responseJson.data[i].fg3a}</p>
-          <p>3P%: ${responseJson.data[i].fg3_pct*100}</p>
-          <p>FT: ${responseJson.data[i].ftm} - ${responseJson.data[i].fta}</p>
-          <p>FT%: ${Math.trunc(responseJson.data[i].ft_pct*100)}</p>
-          <p>OR: ${responseJson.data[i].oreb}</p>
-          <p>DR: ${responseJson.data[i].dreb}</p>
-          <p>REB: ${responseJson.data[i].reb}</p>
-          <p>AST: ${responseJson.data[i].ast}</p>
-          <p>BLK: ${responseJson.data[i].blk}</p>
-          <p>STL: ${responseJson.data[i].stl}</p>
-          <p>PF: ${responseJson.data[i].pf}</p>
-          <p>TO: ${responseJson.data[i].turnover}</p>
-          <p>PTS: ${responseJson.data[i].pts}</p> 
+        <div class="content-flex">
+          <p data-tool-tip="Games Played">GP: ${responseJson.data[i].games_played}</p>
+          <p data-tool-tip="Minutes Played">Min: ${responseJson.data[i].min}</p>
+          <p data-tool-tip="Field Goals Made and Attempted">FG: ${responseJson.data[i].fgm} - ${responseJson.data[i].fga}</p>
+          <p data-tool-tip="Field Goal Percentage">FG%: ${responseJson.data[i].fg_pct*100}</p>
+          <p data-tool-tip="Three Points Made and Attempted">3PT: ${responseJson.data[i].fg3m} - ${responseJson.data[i].fg3a}</p>
+          <p data-tool-tip="Three Points Percentage">3P%: ${responseJson.data[i].fg3_pct*100}</p>
+          <p data-tool-tip="Free Throws Made and Attempted">FT: ${responseJson.data[i].ftm} - ${responseJson.data[i].fta}</p>
+          <p data-tool-tip="Free Throw Percentage">FT%: ${Math.trunc(responseJson.data[i].ft_pct*100)}</p>
+          <p data-tool-tip="Offensive Rebound">OR: ${responseJson.data[i].oreb}</p>
+          <p data-tool-tip="Defensive Rebound">DR: ${responseJson.data[i].dreb}</p>
+          <p data-tool-tip="Rebounds">REB: ${responseJson.data[i].reb}</p>
+          <p data-tool-tip="Assists">AST: ${responseJson.data[i].ast}</p>
+          <p data-tool-tip="Blocks">BLK: ${responseJson.data[i].blk}</p>
+          <p data-tool-tip="Steals">STL: ${responseJson.data[i].stl}</p>
+          <p data-tool-tip="Personal Fouls">PF: ${responseJson.data[i].pf}</p>
+          <p data-tool-tip="Turnovers">TO: ${responseJson.data[i].turnover}</p>
+          <p data-tool-tip="Points">PTS: ${responseJson.data[i].pts}</p> 
+        </div>
         </div>`)
     }
 }
