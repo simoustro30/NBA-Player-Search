@@ -41,19 +41,24 @@ function watchForm() {
 function loopPlayers(responseJson){
     $('#results-list').empty();
     for (let i = 0; i < responseJson.data.length; i++){
+      if (responseJson.data[i].position === null || responseJson.data[i].height_feet === null || responseJson.data[i].height_inches === null || responseJson.data[i].weight_pounds === null) {
+        $('#results-list').append("")
+    }
+    else{
         $('#results-list').append(
             `<li><button class="dropdown id${responseJson.data[i].id}">${responseJson.data[i].first_name} ${responseJson.data[i].last_name}</button>
             <div class="panel">
-                <p>Position: ${responseJson.data[i].position}</p>
-                <p>Height: ${responseJson.data[i].height_feet},${responseJson.data[i].height_inches}</p>
-                <p>Weight: ${responseJson.data[i].weight_pounds}</p>
-                <p>Team: ${responseJson.data[i].team.full_name}</p>
+                <p><strong>Position:</strong> ${responseJson.data[i].position}</p>
+                <p><strong>Height:</strong> ${responseJson.data[i].height_feet},${responseJson.data[i].height_inches}</p>
+                <p><strong>Weight:</strong> ${responseJson.data[i].weight_pounds}</p>
+                <p><strong>Team:</strong> ${responseJson.data[i].team.full_name}</p>
                 <div class="more-info">
                     <button class="player-info" id= "${responseJson.data[i].id}">Stats</button>           
                 </div>
             </div>
           `)
         }
+    }
     $('#results').removeClass('hide');
   };
 function playerInfoClick(){
@@ -74,6 +79,12 @@ function moreStatsButton(){
 }
 
 function displayMoreStats(responseJson){
+  if(responseJson.data === undefined || responseJson.data.length == 0){
+      $('#myNav').append(`<div class="overlay-content">
+      <h3 class="title-more-info no-stats">Sorry we couldn't find the stats for this player!</h3>
+      </div>`)
+    }
+    else{
   for (let i = 0; i < responseJson.data.length; i++){
     $('#myNav').append(`
         <div class="overlay-content">
@@ -98,6 +109,7 @@ function displayMoreStats(responseJson){
           <p data-tool-tip="Points">PTS: ${responseJson.data[i].pts}</p> 
         </div>
         </div>`)
+      }
     }
 }
 
