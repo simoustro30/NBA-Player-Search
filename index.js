@@ -1,4 +1,5 @@
 const searchURL = 'https://www.balldontlie.io/api/v1/players';
+const secondSearchUrl = `https://www.balldontlie.io/api/v1/season_averages?player_ids[]=`
 //FUNCTIONS TO OBTAIN PLAYERS//
 function formatQueryParams(params) {
   const queryItems = Object.keys(params)
@@ -33,18 +34,21 @@ function getPlayers(query) {
 function watchForm() {
   $('form').submit(event => {
     event.preventDefault();
+    $('#results-list').empty();
+    $('.response-title').empty();
     const searchTerm = $('#js-search-term').val();
     getPlayers(searchTerm);
   });
 }
 //FUNCTIONS TO DISPLAY PLAYERS AND STATS//
 function loopPlayers(responseJson){
-    $('#results-list').empty();
-    for (let i = 0; i < responseJson.data.length; i++){
-      if (responseJson.data[i].position === null || responseJson.data[i].height_feet === null || responseJson.data[i].height_inches === null || responseJson.data[i].weight_pounds === null) {
-        $('#results-list').append("")
-    }
+    if(responseJson.data.length == 0)
+      {$('.response-title').html(`<h2> No players with that name were found</h2>`);}
     else{
+    for (let i = 0; i < responseJson.data.length; i++){;
+      if (responseJson.data[i].position === null || responseJson.data[i].height_feet === null || responseJson.data[i].height_inches === null || responseJson.data[i].weight_pounds === null) {
+        $('#results-list').append("");}
+      else {
         $('#results-list').append(
             `<li><button class="dropdown id${responseJson.data[i].id}">${responseJson.data[i].first_name} ${responseJson.data[i].last_name}</button>
             <div class="panel">
@@ -56,9 +60,10 @@ function loopPlayers(responseJson){
                     <button class="player-info" id= "${responseJson.data[i].id}">Stats</button>           
                 </div>
             </div>
-          `)
-        }
-    }
+          `);
+        };
+    };
+    };
     $('#results').removeClass('hide');
   };
 function playerInfoClick(){
@@ -113,7 +118,7 @@ function displayMoreStats(responseJson){
     }
 }
 
-const secondSearchUrl = `https://www.balldontlie.io/api/v1/season_averages?player_ids[]=`
+
 
 function secondFetch(playersId){
 
