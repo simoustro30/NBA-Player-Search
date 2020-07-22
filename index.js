@@ -49,8 +49,9 @@ function loopPlayers(responseJson){
       if (responseJson.data[i].position === null || responseJson.data[i].height_feet === null || responseJson.data[i].height_inches === null || responseJson.data[i].weight_pounds === null) {
         $('#results-list').append("");}
       else {
-        $('#results-list').append(
-            `<li><button class="dropdown">${responseJson.data[i].first_name} ${responseJson.data[i].last_name}</button>
+        $('.response-title').append(`<h2>NBA Players Found :</h2>`)
+        $('#results-list').append(`
+            <li><button class="dropdown">${responseJson.data[i].first_name} ${responseJson.data[i].last_name}</button>
             <div class="panel">
                 <p><strong>Position:</strong> ${responseJson.data[i].position}</p>
                 <p><strong>Height:</strong> ${responseJson.data[i].height_feet},${responseJson.data[i].height_inches}</p>
