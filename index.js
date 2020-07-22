@@ -50,7 +50,7 @@ function loopPlayers(responseJson){
         $('#results-list').append("");}
       else {
         $('#results-list').append(
-            `<li><button class="dropdown id${responseJson.data[i].id}">${responseJson.data[i].first_name} ${responseJson.data[i].last_name}</button>
+            `<li><button class="dropdown">${responseJson.data[i].first_name} ${responseJson.data[i].last_name}</button>
             <div class="panel">
                 <p><strong>Position:</strong> ${responseJson.data[i].position}</p>
                 <p><strong>Height:</strong> ${responseJson.data[i].height_feet},${responseJson.data[i].height_inches}</p>
@@ -117,8 +117,6 @@ function displayMoreStats(responseJson){
       }
     }
 }
-
-
 
 function secondFetch(playersId){
 
