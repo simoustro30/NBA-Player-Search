@@ -225,3 +225,7 @@ font-size: 20px;
 .no-stats{
   font-size: 40px;
 }
+label{
+  font-weight: 600;
+  padding-right: 10px;
+}
