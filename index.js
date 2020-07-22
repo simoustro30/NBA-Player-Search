@@ -35,7 +35,6 @@ function watchForm() {
   $('form').submit(event => {
     event.preventDefault();
     $('#results-list').empty();
-    $('.response-title').empty();
     const searchTerm = $('#js-search-term').val();
     getPlayers(searchTerm);
   });
@@ -49,7 +48,7 @@ function loopPlayers(responseJson){
       if (responseJson.data[i].position === null || responseJson.data[i].height_feet === null || responseJson.data[i].height_inches === null || responseJson.data[i].weight_pounds === null) {
         $('#results-list').append("");}
       else {
-        $('.response-title').append(`<h2>NBA Players Found :</h2>`)
+        $('.response-title').html(`<h2> NBA Players Found :</h2>`)
         $('#results-list').append(`
             <li><button class="dropdown">${responseJson.data[i].first_name} ${responseJson.data[i].last_name}</button>
             <div class="panel">
